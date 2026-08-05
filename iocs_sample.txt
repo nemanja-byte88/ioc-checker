@@ -1,0 +1,7 @@
+# Primer liste IOC-a za batch proveru
+# Jedna stavka po liniji, linije koje počinju sa # se ignorišu
+
+8.8.8.8
+1.1.1.1
+google.com
+44d88612fea8a8f36de82e1278abb02f
