@@ -2,17 +2,17 @@ name: Keep Supabase Alive
 
 on:
   schedule:
-    - cron: '0 8 * * 1,4'
+    - cron: '0 8 * * *'
   workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Supabase REST endpoint
+      - name: Query Supabase table
         run: |
-          echo "URL length: ${#SUPABASE_URL}"
-          curl -v -o /dev/null -w "HTTP status: %{http_code}\n" "$SUPABASE_URL/rest/v1/" \
+          curl -fsS -o /dev/null -w "HTTP status: %{http_code}\n" \
+             "$SUPABASE_URL/rest/v1/user_usage?select=*&limit=1" \
             -H "apikey: $SUPABASE_ANON_KEY" \
             -H "Authorization: Bearer $SUPABASE_ANON_KEY"
         env:
