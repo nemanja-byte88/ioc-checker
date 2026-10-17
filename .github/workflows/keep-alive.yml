@@ -12,7 +12,7 @@ jobs:
       - name: Query Supabase table
         run: |
           code=$(curl -sS -o body.txt -w "%{http_code}" \
-            "$SUPABASE_URL/rest/v1/user_usage?select=*&limit=1" \
+            "$SUPABASE_URL/rest/v1/heartbeat?select=id&limit=1" \
             -H "apikey: $SUPABASE_ANON_KEY" \
             -H "Authorization: Bearer $SUPABASE_ANON_KEY")
           echo "HTTP status: $code"
